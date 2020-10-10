@@ -6,6 +6,7 @@ function App() {
   
   const [members, setMembers] = useState();
   const [isModalShown, setIsModalShown] = useState(false);
+  const [login, setLogin] = useState();
 
 
   // load list of members when page loads
@@ -24,7 +25,8 @@ function App() {
   }, []);
 
   // functions for showing and hiding modal
-  function showModal() {
+  function showModal(login) {
+    setLogin(login);
     setIsModalShown(true);
   }
 
@@ -35,18 +37,17 @@ function App() {
   return (
     <>
       <div className="container">
-      {isModalShown && <ProfileModal onClose={hideModal} />}
+      {isModalShown && <ProfileModal onClose={hideModal} login={login} />}
 
-        <h2 className="text-center mt-3">Ember JS Members</h2>
         {/* list of members */}
         {members && members.map((member) => {
           return (
             <div className="row d-flex justify-content-center mt-5 mb-5">
               <div className="col">
-                <img src={member.avatar_url} onClick={showModal} />
+                <img src={member.avatar_url} onClick={() => showModal(member.login)} />
               </div>
               <div className="col">
-                <p><span onClick={showModal}>{member.login}</span></p>
+                <p><span onClick={() => showModal(member.login)}>{member.login}</span></p>
               </div>
             </div>
           );
