@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import ProfileModal from './ProfileModal';
+import ReposModal from './ReposModal';
 
 function App() {
   
   const [members, setMembers] = useState();
   const [isModalShown, setIsModalShown] = useState(false);
   const [login, setLogin] = useState();
+
+  const [isReposModalShown, setIsReposModalShown] = useState(false);
+  const [reposUrl, setReposUrl] = useState();
 
 
   // load list of members when page loads
@@ -24,7 +28,7 @@ function App() {
     });
   }, []);
 
-  // functions for showing and hiding modal
+  // functions for showing and hiding profile modal
   function showModal(login) {
     setLogin(login);
     setIsModalShown(true);
@@ -33,11 +37,23 @@ function App() {
   function hideModal() {
     setIsModalShown(false);
   }
+
+  // functions for showing and hiding repos modal
+  function showReposModal(url) {
+    setReposUrl(url);
+    setIsReposModalShown(true);
+  }
+
+  function hideReposModal() {
+    setIsReposModalShown(false);
+  }
   
   return (
     <>
       <div className="container">
       {isModalShown && <ProfileModal onClose={hideModal} login={login} />}
+
+      {isReposModalShown && <ReposModal onClose={hideReposModal} url={reposUrl} />}
 
         {/* list of members */}
         {members && members.map((member) => {
@@ -48,6 +64,9 @@ function App() {
               </div>
               <div className="col">
                 <p><span onClick={() => showModal(member.login)}>{member.login}</span></p>
+                <div>
+                  <button className="btn btn-primary" onClick={() => showReposModal(member.repos_url)}>repos</button>
+                </div>
               </div>
             </div>
           );
