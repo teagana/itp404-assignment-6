@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import ProfileModal from './ProfileModal';
 import ReposModal from './ReposModal';
+import { writeMembers, readMembers, flipStatus } from "./api";
 
 function App() {
   
@@ -25,6 +26,16 @@ function App() {
     })
     .then((members) => {
         setMembers(members); 
+
+        writeMembers(members);
+
+        readMembers().then((members) => {
+          for(var i = 0; i < members.size; i++) {
+            console.log(members[i]);
+          }
+        });
+
+         
     });
   }, []);
 
