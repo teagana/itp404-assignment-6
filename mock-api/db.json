@@ -40,7 +40,7 @@
       "received_events_url": "https://api.github.com/users/acorncom/received_events",
       "type": "User",
       "site_admin": false,
-      "followStatus": 1
+      "followStatus": 0
     },
     {
       "login": "Alonski",
@@ -103,7 +103,7 @@
       "received_events_url": "https://api.github.com/users/bantic/received_events",
       "type": "User",
       "site_admin": false,
-      "followStatus": 1
+      "followStatus": 0
     },
     {
       "login": "bmac",

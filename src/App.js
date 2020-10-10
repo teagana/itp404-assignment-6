@@ -59,11 +59,11 @@ function App() {
 
   function clickedFollowButton(id, followStatus) {
     // flip the status and render the new members
-    console.log(id, followStatus);
+    // console.log(id, followStatus);
     flipStatus(id, followStatus).then(() => {
       readMembers().then((members) => {
         setMembers(members);
-        console.log(members);
+        // console.log(members);
       });
     });
   }
@@ -91,7 +91,7 @@ function App() {
               </div>
             </div>
             <div className="row d-flex justify-content-center mb-5 mt-2">
-                <button type="button" className="btn btn-primary follow" onClick={() => clickedFollowButton(member.id, member.followStatus)}>{member.followStatus ? "unfollow" : "follow" }</button>
+                <button type="button" className= "btn btn-primary follow" onClick={() => clickedFollowButton(member.id, member.followStatus)}>{member.followStatus ? "unfollow" : "follow" }</button>
             </div>
             </>
           );

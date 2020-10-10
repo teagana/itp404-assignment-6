@@ -17,15 +17,7 @@ export function writeMembers(members) {
         member.followStatus = f;
         member.id = count;
 
-        console.log(member);
-
         return member;
-        
-        // return ({
-        //     id: count,
-        //     login: member.login,
-        //     followStatus: followStatus
-        // });
     });
 
     return fetch("api/members", {
