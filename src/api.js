@@ -7,14 +7,14 @@ export function writeMembers(members) {
     var count = 0;
     var initializedMembers = members.map((member) => {
         if(member.followStatus === undefined) {
-            var followStatus = 0;
+            var f = 0;
         }
         else {
-            var followStatus = member.followStatus;
+            var f = member.followStatus;
         }
         count++;
 
-        member.followStatus = followStatus;
+        member.followStatus = f;
         member.id = count;
 
         console.log(member);
@@ -48,6 +48,20 @@ export function readMembers() {
 }
 
 // flip the following status of the specified member
-export function flipStatus(id) {
-
+export function flipStatus(id, followStatus) {
+    // var f = Number(followStatus) ? '0' : '1';
+    // console.log(f);
+    
+    return fetch(`/api/members/${id}`, {
+        method: "PATCH",
+        // flip the status that comes in
+        body: JSON.stringify({
+            followStatus: Number(followStatus) ? 0 : 1
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((response) => {
+        return response.json();
+    })
 }

@@ -31,8 +31,8 @@ function App() {
     // });
 
     readMembers().then((members) => {
-      setMembers(members[0]);
-      console.log(members);
+      setMembers(members);
+      // console.log(members);
     });
 
   }, []);
@@ -56,6 +56,17 @@ function App() {
   function hideReposModal() {
     setIsReposModalShown(false);
   }
+
+  function clickedFollowButton(id, followStatus) {
+    // flip the status and render the new members
+    console.log(id, followStatus);
+    flipStatus(id, followStatus).then(() => {
+      readMembers().then((members) => {
+        setMembers(members);
+        console.log(members);
+      });
+    });
+  }
   
   return (
     <>
@@ -75,12 +86,12 @@ function App() {
               <div className="col">
                 <p><span onClick={() => showModal(member.login)}>{member.login}</span></p>
                 <div>
-                  <button type="button" className="btn btn-dark" onClick={() => showReposModal(member.repos_url)}>repos</button>
+                  <button type="button" className="btn btn-dark" onClick={() => showReposModal(member.repos_url, member.followStatus)}>repos</button>
                 </div>
               </div>
             </div>
             <div className="row d-flex justify-content-center mb-5 mt-2">
-                <button type="button" className="btn btn-primary follow" onClick={() => flipStatus(member.id)}>{member.followStatus ? "unfollow" : "follow" }</button>
+                <button type="button" className="btn btn-primary follow" onClick={() => clickedFollowButton(member.id, member.followStatus)}>{member.followStatus ? "unfollow" : "follow" }</button>
             </div>
             </>
           );
