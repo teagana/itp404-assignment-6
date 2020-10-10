@@ -16,27 +16,25 @@ function App() {
 
   // load list of members when page loads
   useEffect(() =>  {
-    fetch("https://api.github.com/orgs/emberjs/members", {
-      headers: {
-        Accept: "application/json",
-      },
-    })
-    .then((response) => {
-      return response.json()
-    })
-    .then((members) => {
-        setMembers(members); 
+    // fetch("https://api.github.com/orgs/emberjs/members", {
+    //   headers: {
+    //     Accept: "application/json",
+    //   },
+    // })
+    // .then((response) => {
+    //   return response.json()
+    // })
+    // .then((members) => {
+    //     setMembers(members); 
 
-        writeMembers(members);
+    //     // writeMembers(members);
+    // });
 
-        readMembers().then((members) => {
-          for(var i = 0; i < members.size; i++) {
-            console.log(members[i]);
-          }
-        });
-
-         
+    readMembers().then((members) => {
+      setMembers(members[0]);
+      console.log(members);
     });
+
   }, []);
 
   // functions for showing and hiding profile modal
@@ -69,17 +67,22 @@ function App() {
         {/* list of members */}
         {members && members.map((member) => {
           return (
-            <div className="row d-flex justify-content-center mt-5 mb-5">
+            <>
+            <div className="row d-flex justify-content-center mt-5">
               <div className="col">
                 <img src={member.avatar_url} onClick={() => showModal(member.login)} />
               </div>
               <div className="col">
                 <p><span onClick={() => showModal(member.login)}>{member.login}</span></p>
                 <div>
-                  <button className="btn btn-primary" onClick={() => showReposModal(member.repos_url)}>repos</button>
+                  <button type="button" className="btn btn-dark" onClick={() => showReposModal(member.repos_url)}>repos</button>
                 </div>
               </div>
             </div>
+            <div className="row d-flex justify-content-center mb-5 mt-2">
+                <button type="button" className="btn btn-primary follow" onClick={() => flipStatus(member.id)}>{member.followStatus ? "unfollow" : "follow" }</button>
+            </div>
+            </>
           );
         })}
       </div>

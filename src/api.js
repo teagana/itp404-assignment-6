@@ -48,6 +48,6 @@ export function readMembers() {
 }
 
 // flip the following status of the specified member
-export function flipStatus(login) {
+export function flipStatus(id) {
 
 }

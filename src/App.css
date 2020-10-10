@@ -4,6 +4,10 @@
   cursor: pointer;
 }
 
+.follow {
+  width: 230px;
+}
+
 .col span {
   cursor: pointer;
 }
