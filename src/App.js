@@ -33,13 +33,7 @@ function App() {
           setFollowedMembers(followedMembers);
         })
 
-        // writeMembers(members);
     });
-
-    // readMembers().then((members) => {
-    //   setMembers(members);
-    //   // console.log(members);
-    // });
 
   }, []);
 
@@ -64,14 +58,6 @@ function App() {
   }
 
   function clickedFollowButton(login) {
-    // flip the status and render the new members
-    // console.log(id, followStatus);
-    // flipStatus(id, followStatus).then(() => {
-    //   readMembers().then((members) => {
-    //     setMembers(members);
-    //     // console.log(members);
-    //   });
-    // });
 
     // we're currently following; need to unfollow
     if(followedMembers.some(e => e.login === login)) {
@@ -107,7 +93,7 @@ function App() {
             <>
             <div className="row d-flex justify-content-center mt-5">
               <div className="col">
-                <img src={member.avatar_url} onClick={() => showModal(member.login)} />
+                <img src={member.avatar_url} alt="" onClick={() => showModal(member.login)} />
               </div>
               <div className="col">
                 <p><span onClick={() => showModal(member.login)}>{member.login}</span></p>

@@ -48,7 +48,7 @@ export default function ReposModal({ onClose, url }) {
                     { modalDetails && modalDetails.map((repo) => {
                         return (
                             <div>
-                                <p><a href={repo.html_url} target="_blank">{repo.name}</a></p>
+                                <p><a href={repo.html_url} target="_blank" rel="noopener noreferrer">{repo.name}</a></p>
                                 <p>{repo.description}</p>
                                 <hr/>
                             </div>
