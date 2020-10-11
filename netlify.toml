@@ -1,5 +1,5 @@
 [[redirects]]
-  =from = "/api/*"
+  from = "/api/*"
   to = "https://issues-app-json-server.herokuapp.com/api/:splat"
   status = 200
 
